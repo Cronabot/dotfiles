@@ -12,7 +12,6 @@ This repository contains my personal dotfiles, built on [Hyprland](https://githu
 - [kitty](https://github.com/kovidgoyal/kitty) (terminal)
 - [zsh](https://www.zsh.org/) (shell)
 - [stow](https://www.gnu.org/software/stow) (dotfiles manager)
-- [node]
 
 #### Optional Programs
 
