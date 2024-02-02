@@ -1,0 +1,64 @@
+@import 'colors';
+
+* {
+    font-weight: bold;
+}
+
+window.background {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.bar-bg {
+    background-color: rgba($background, 1);
+    margin: 0 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    min-height: 32px;
+}
+
+.box-right, .box-left {
+    padding: 4px;
+}
+
+// LEFT
+
+.box-left {
+    margin-left: 12px;
+}
+
+// CENTER
+
+.box-center {
+    padding: 4px 8px;
+
+}
+
+// RIGHT
+
+
+.box-infos {
+    border-radius: 8px;
+    padding: 10px;
+    background: none;
+    transition: background 0.3s;
+    &:hover {
+        background: linear-gradient(90deg, $primary 0%, $primaryl 100%);
+    }
+}
+
+.box-tray {
+    border-radius: 8px;
+    background: none;
+    transition: background 0.3s;
+    &:hover {
+        background: linear-gradient(90deg, $primary 0%, $primaryl 100%);
+    }
+}
+
+.btn-systrayitem {
+    margin: 0;
+    padding: 4px 4px;
+    background: none;
+    border: none;
+    text-shadow: none;
+}

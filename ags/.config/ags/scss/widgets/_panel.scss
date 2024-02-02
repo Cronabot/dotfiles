@@ -1,0 +1,32 @@
+@import 'colors';
+
+.panel-revealer {
+    padding: 1px
+}
+
+.panel-bg {
+    background: none;
+}
+
+.panel-main {
+    background-color: $background;
+    border-radius: 10px;
+}
+
+.box-panel-sysInfo, .box-panel-power {
+    padding: 10px;
+}
+
+.notification {
+    background-color: $background;
+    padding: 10px;
+    border-radius: 10px;
+
+    *.notification-title {
+        font-weight: bold;
+    }
+
+    *.notification-body {
+        font-weight: normal;
+    }
+}
