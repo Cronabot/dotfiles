@@ -1,11 +1,9 @@
 import AgsWindow from 'types/widgets/window';
 import { Bar } from './widgets/bar/main';
-import { exec } from 'resource:///com/github/Aylur/ags/utils.js';
 import { Monitor } from 'types/service/hyprland';
 import { WidgetFunction } from './utils';
-import { Panel } from './widgets/panel/main';
-import { App } from 'types/app';
-import { panelToggled } from 'vars';
+import { Panel } from './widgets/panel/main'; import { exec } from 'resource:///com/github/Aylur/ags/utils.js';
+import { NotificationPopup } from './widgets/notification-popups/main';
 
 console.log("Loading Widgets")
 console.log("Checking monitor count")
@@ -22,7 +20,8 @@ const forMonitor = (w: WidgetFunction) => {
 const windows = () => {
     const wins = [
         forMonitor(Bar),
-        Panel()
+        forMonitor(Panel),
+        NotificationPopup()
     ].flat(1)
     console.log(`Loaded ${wins.length} Windows`)
     return wins

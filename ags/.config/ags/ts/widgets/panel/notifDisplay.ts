@@ -3,7 +3,6 @@ import { Widget } from "resource:///com/github/Aylur/ags/widget.js"
 import { lookUpIcon } from "resource:///com/github/Aylur/ags/utils.js";
 
 const NotificationIcon = ({ app_entry, app_icon, image }: Notification) => {
-    console.log(image? image : "no image")
     if (image) {
         return Widget.Box({
             css: `
@@ -28,7 +27,6 @@ const NotificationIcon = ({ app_entry, app_icon, image }: Notification) => {
 
 export const notifDisplay = () => Widget.Box({
     class_name: "box-panel-notifDisplay",
-    expand: true,
     spacing: 8,
     vertical: true,
     
@@ -45,12 +43,16 @@ export const notifDisplay = () => Widget.Box({
                 children: [
                     Widget.Label({
                         class_name: "notification-title",
+                        max_width_chars: 10,
+                        justification: 'left',
                         label: notif.summary
                     }),
                     Widget.Label({
                         class_name: "notification-body",
+                        justification: 'left',
                         label: notif.body,
                         wrap: true,
+                        max_width_chars: 10,
                     })
                 ]
             }),

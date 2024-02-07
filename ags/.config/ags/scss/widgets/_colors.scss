@@ -1,6 +1,9 @@
-$background: #282828;
-$backgroundl: #484848;
-$foreground: #f2f4f8;
+$foreground: #282828;
+$background-col: #f2f4f8;
+$background: rgba($background-col, 0.3);
+$backgroundl: rgba($background-col, 0.4);
+
+$highlight-grad: linear-gradient(90deg, rgba($background-col, 0.3) 0%, rgba($background-col, 0.35) 100%);
 
 $primary: #78a9ff;
 $primaryl: #be95ff;

@@ -14,10 +14,6 @@ declare module 'resource:///com/github/Aylur/ags/app.js' {
     const exports: typeof import('./app')
     export = exports
 }
-declare module 'resource:///com/github/Aylur/ags/gobject.js' {
-    const exports: typeof import('./gobject')
-    export = exports
-}
 declare module 'resource:///com/github/Aylur/ags/overrides.js' {
     const exports: typeof import('./overrides')
     export = exports
@@ -52,6 +48,10 @@ declare module 'resource:///com/github/Aylur/ags/service/battery.js' {
 }
 declare module 'resource:///com/github/Aylur/ags/service/bluetooth.js' {
     const exports: typeof import('./service/bluetooth')
+    export = exports
+}
+declare module 'resource:///com/github/Aylur/ags/service/greetd.js' {
+    const exports: typeof import('./service/greetd')
     export = exports
 }
 declare module 'resource:///com/github/Aylur/ags/service/hyprland.js' {
@@ -96,6 +96,10 @@ declare module 'resource:///com/github/Aylur/ags/widgets/circularprogress.js' {
 }
 declare module 'resource:///com/github/Aylur/ags/widgets/entry.js' {
     const exports: typeof import('./widgets/entry')
+    export = exports
+}
+declare module 'resource:///com/github/Aylur/ags/widgets/etc.js' {
+    const exports: typeof import('./widgets/etc')
     export = exports
 }
 declare module 'resource:///com/github/Aylur/ags/widgets/eventbox.js' {

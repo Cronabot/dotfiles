@@ -9,7 +9,7 @@
         "checkJs": true,
         "strict": true,
         "noImplicitAny": false,
-        "baseUrl": ".",
+        "baseUrl": "~/.config/ags",
         "typeRoots": [
             "./types/ags.d.ts",
             "./node_modules/@girs"

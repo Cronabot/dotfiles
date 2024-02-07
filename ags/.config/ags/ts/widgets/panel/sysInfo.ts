@@ -43,7 +43,6 @@ export const sysInfo = () => Widget.Box({
             children: [
                 Widget.Slider({
                     orientation: 1,
-                    vexpand: true,
                 }),
                 Widget.Slider({
                     orientation: 1,

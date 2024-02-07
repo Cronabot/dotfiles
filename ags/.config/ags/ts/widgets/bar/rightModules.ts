@@ -69,6 +69,9 @@ const NotificationInfo = () => Widget.Box({
 
 const Infos = () => Widget.EventBox({
     class_name: "box-infos",
+    on_primary_click_release: () => {
+        panelToggled.setValue(!panelToggled.getValue())
+    },
     child: Widget.Box({
         spacing: 8,
         margin_left: 8,

@@ -1,7 +1,11 @@
 @import 'colors';
 
+.panel-window {
+    margin-top: 30px;
+}
+
 .panel-revealer {
-    padding: 1px
+    margin-left: 100px;
 }
 
 .panel-bg {
@@ -10,6 +14,7 @@
 
 .panel-main {
     background-color: $background;
+    border: solid 1px $backgroundl;
     border-radius: 10px;
 }
 
@@ -19,6 +24,7 @@
 
 .notification {
     background-color: $background;
+    border: solid 1px $backgroundl;
     padding: 10px;
     border-radius: 10px;
 

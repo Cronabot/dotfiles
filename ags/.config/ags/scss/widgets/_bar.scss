@@ -9,11 +9,12 @@ window.background {
 }
 
 .bar-bg {
-    background-color: rgba($background, 1);
-    margin: 0 10px;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+    background-color: $background;
     min-height: 32px;
+    margin: 0 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: solid 1px $backgroundl;
 }
 
 .box-right, .box-left {
@@ -42,7 +43,7 @@ window.background {
     background: none;
     transition: background 0.3s;
     &:hover {
-        background: linear-gradient(90deg, $primary 0%, $primaryl 100%);
+        background: $highlight-grad;
     }
 }
 
@@ -51,7 +52,7 @@ window.background {
     background: none;
     transition: background 0.3s;
     &:hover {
-        background: linear-gradient(90deg, $primary 0%, $primaryl 100%);
+        background: $highlight-grad;
     }
 }
 
