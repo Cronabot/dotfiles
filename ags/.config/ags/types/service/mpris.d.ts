@@ -1,14 +1,41 @@
 import Service from '../service.js';
 type PlaybackStatus = 'Playing' | 'Paused' | 'Stopped';
 type LoopStatus = 'None' | 'Track' | 'Playlist';
+type MprisMetadata = {
+    'mpris:trackid'?: string;
+    'mpris:length'?: number;
+    'mpris:artUrl'?: string;
+    'xesam:album'?: string;
+    'xesam:albumArtist'?: string;
+    'xesam:artist'?: string[];
+    'xesam:asText'?: string;
+    'xesam:audioBPM'?: number;
+    'xesam:autoRating'?: number;
+    'xesam:comment'?: string[];
+    'xesam:composer'?: string[];
+    'xesam:contentCreated'?: string;
+    'xesam:discNumber'?: number;
+    'xesam:firstUsed'?: string;
+    'xesam:genre'?: string[];
+    'xesam:lastUsed'?: string;
+    'xesam:lyricist'?: string[];
+    'xesam:title'?: string;
+    'xesam:trackNumber'?: number;
+    'xesam:url'?: string;
+    'xesam:useCount'?: number;
+    'xesam:userRating'?: number;
+    [key: string]: unknown;
+};
 export declare class MprisPlayer extends Service {
     get bus_name(): string;
     get name(): string;
     get entry(): string;
     get identity(): string;
+    get metadata(): MprisMetadata;
     get trackid(): string;
     get track_artists(): string[];
     get track_title(): string;
+    get track_album(): string;
     get track_cover_url(): string;
     get cover_path(): string;
     get play_back_status(): PlaybackStatus;
@@ -22,9 +49,11 @@ export declare class MprisPlayer extends Service {
     private _name;
     private _entry;
     private _identity;
+    private _metadata;
     private _trackid;
     private _trackArtists;
     private _trackTitle;
+    private _trackAlbum;
     private _trackCoverUrl;
     private _coverPath;
     private _playBackStatus;
@@ -47,15 +76,16 @@ export declare class MprisPlayer extends Service {
     set volume(value: number);
     get position(): number;
     set position(time: number);
-    playPause(): void;
-    play(): void;
-    stop(): void;
-    next(): void;
-    previous(): void;
-    shuffle(): void;
-    loop(): void;
+    readonly playPause: () => Promise<void>;
+    readonly play: () => Promise<void>;
+    readonly stop: () => Promise<void>;
+    readonly next: () => Promise<void>;
+    readonly previous: () => Promise<void>;
+    readonly shuffle: () => boolean;
+    readonly loop: () => void;
 }
 export declare class Mpris extends Service {
+    cacheCoverArt: boolean;
     private _proxy;
     private _players;
     get players(): MprisPlayer[];
@@ -63,7 +93,7 @@ export declare class Mpris extends Service {
     private _addPlayer;
     private _onProxyReady;
     private _onNameOwnerChanged;
-    getPlayer(name?: string): MprisPlayer | null;
+    readonly getPlayer: (name?: string) => MprisPlayer | null;
 }
 export declare const mpris: Mpris;
 export default mpris;

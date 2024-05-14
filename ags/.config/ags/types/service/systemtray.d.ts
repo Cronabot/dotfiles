@@ -16,10 +16,10 @@ export declare class TrayItem extends Service {
     private _iconTheme?;
     menu?: DbusmenuGtk3.Menu;
     constructor(busName: string, objectPath: string);
-    activate(event: Gdk.Event): void;
-    secondaryActivate(event: Gdk.Event): void;
-    scroll(event: Gdk.EventScroll): void;
-    openMenu(event: Gdk.Event): void;
+    readonly activate: (event: Gdk.Event) => void;
+    readonly secondaryActivate: (event: Gdk.Event) => void;
+    readonly scroll: (event: Gdk.EventScroll) => void;
+    readonly openMenu: (event: Gdk.Event) => void;
     get category(): string;
     get id(): string;
     get title(): string;
@@ -29,7 +29,7 @@ export declare class TrayItem extends Service {
     get tooltip_markup(): string;
     get icon(): string | GdkPixbuf.Pixbuf;
     private _itemProxyAcquired;
-    _notify(): void;
+    private _notify;
     private _refreshAllProperties;
     private _getPixbuf;
 }
@@ -40,7 +40,7 @@ export declare class SystemTray extends Service {
     get ProtocolVersion(): number;
     get RegisteredStatusNotifierItems(): string[];
     get items(): TrayItem[];
-    getItem(name: string): TrayItem | undefined;
+    readonly getItem: (name: string) => TrayItem | undefined;
     constructor();
     private _register;
     RegisterStatusNotifierItemAsync(serviceName: string[], invocation: Gio.DBusMethodInvocation): void;

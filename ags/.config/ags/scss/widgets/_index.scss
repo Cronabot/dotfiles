@@ -1,2 +1,14 @@
 @use 'bar';
-@use 'panel'
+@use 'panel';
+
+.red-text {
+    color: red;
+}
+
+.green-text {
+    color: greenyellow;
+}
+
+.orange-text {
+    color: orange;
+}

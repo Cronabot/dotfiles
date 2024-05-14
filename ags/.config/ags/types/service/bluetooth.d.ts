@@ -18,18 +18,18 @@ export declare class BluetoothDevice extends Service {
     get trusted(): any;
     get type(): any;
     get connecting(): boolean;
-    setConnection(connect: boolean): void;
+    readonly setConnection: (connect: boolean) => void;
 }
 export declare class Bluetooth extends Service {
     private _client;
     private _devices;
     constructor();
-    toggle(): void;
+    readonly toggle: () => void;
     private _getDevices;
     private _deviceAdded;
     private _deviceRemoved;
-    connectDevice(device: BluetoothDevice, connect: boolean, callback: (s: boolean) => void): void;
-    getDevice(address: string): BluetoothDevice | undefined;
+    readonly connectDevice: (device: BluetoothDevice, connect: boolean, callback: (s: boolean) => void) => void;
+    readonly getDevice: (address: string) => BluetoothDevice | undefined;
     set enabled(v: boolean);
     get enabled(): boolean;
     get state(): string;

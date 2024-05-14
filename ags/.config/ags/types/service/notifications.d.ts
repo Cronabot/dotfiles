@@ -84,23 +84,26 @@ export declare class Notification extends Service {
     get summary(): string;
     get suppress_sound(): boolean | undefined;
     get time(): number;
+    get timeout(): number;
     get transient(): boolean | undefined;
     get urgency(): Urgency;
     get x(): number | undefined;
     get y(): number | undefined;
     get hints(): Hints;
-    set timeout(t: number);
-    get timeout(): number;
     constructor(appName: string, id: number, appIcon: string, summary: string, body: string, acts: string[], hints: Hints, popup: boolean);
-    dismiss(): void;
-    close(): void;
-    invoke(id: string): void;
+    readonly dismiss: () => void;
+    readonly close: () => void;
+    readonly invoke: (id: string) => void;
     toJson(cacheActions?: boolean): NotifcationJson;
     static fromJson(json: NotifcationJson): Notification;
     private _appIconImage;
     private _parseImageData;
 }
 export declare class Notifications extends Service {
+    popupTimeout: number;
+    forceTimeout: boolean;
+    cacheActions: boolean;
+    clearDelay: number;
     private _dbus;
     private _notifications;
     private _dnd;
@@ -110,8 +113,8 @@ export declare class Notifications extends Service {
     set dnd(value: boolean);
     get notifications(): Notification[];
     get popups(): Notification[];
-    getPopup(id: number): Notification | null;
-    getNotification(id: number): Notification | undefined;
+    readonly getPopup: (id: number) => Notification | null;
+    readonly getNotification: (id: number) => Notification | undefined;
     Notify(appName: string, replacesId: number, appIcon: string, summary: string, body: string, acts: string[], hints: Hints, expiration: number): number;
     Clear(): void;
     DismissNotification(id: number): void;
@@ -119,7 +122,7 @@ export declare class Notifications extends Service {
     InvokeAction(id: number, actionId: string): void;
     GetCapabilities(): string[];
     GetServerInformation(): GLib.Variant;
-    clear(): void;
+    readonly clear: () => Promise<unknown[]>;
     private _addNotification;
     private _onDismissed;
     private _onClosed;

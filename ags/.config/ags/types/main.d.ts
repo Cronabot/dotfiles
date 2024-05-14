@@ -1,2 +1,2 @@
 import './overrides.js';
-export declare function main(args: string[]): void | Promise<number>;
+export declare function main(args: string[]): Promise<number | void>;

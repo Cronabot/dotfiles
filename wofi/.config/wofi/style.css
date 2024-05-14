@@ -1,0 +1,36 @@
+#window {
+    font-size: 16px;
+    font-family: "FiraCode Nerd Font";
+    background: none;
+}
+
+#outer-box {
+    border-radius: 16px;
+}
+
+#input {
+    border-radius: 16px;
+    background-color: #282828;
+}
+
+#scroll {
+    margin: 32px;
+    border-radius: 16px;
+}
+
+#inner-box {
+    border-radius: 16px;
+    background-color: #282828;
+}
+
+#entry {
+    border: none;
+    border-radius: 16px;
+}
+
+#entry:selected {
+    border: none;
+    background-color: #ee5396;
+}
+
+

@@ -9,51 +9,78 @@ window.background {
 }
 
 .bar-bg {
-    background-color: $background;
+    background-color: transparent;
     min-height: 32px;
-    margin: 0 10px;
-    margin-top: 10px;
-    border-radius: 8px;
-    border: solid 1px $backgroundl;
 }
 
-.box-right, .box-left {
-    padding: 4px;
+.b-icl, .b-icr {
+    background: rgba(255,0,0,0);
+    min-width: 18px;
+    min-height: 18px;
+}
+
+.b-icl {
+    border-top-left-radius: 18px;
+    box-shadow: -8px -3px 0px 0px $background;
+}
+
+.b-icr {
+    border-top-right-radius: 18px;
+    box-shadow: 8px -3px 0px 0px $background;
 }
 
 // LEFT
 
 .box-left {
-    margin-left: 12px;
+    padding: 0 12px;
+    background-color: $background;
+
+    label {
+        color: $primary;
+    }
+
+    border-bottom-right-radius: 18px;
+}
+
+.workspaces {
+    label {
+        min-width: 1rem;
+        min-height: 1rem;
+        color: unset;
+        &.active {
+            color: $accent;
+        }
+    }
+
 }
 
 // CENTER
 
 .box-center {
-    padding: 4px 8px;
-
+    padding: 4px 16px;
+    background-color: $background;
+    border-bottom-right-radius: 18px;
+    border-bottom-left-radius: 18px;
 }
 
 // RIGHT
 
+.box-right {
+    background-color: $background;
+    padding: 0 8px;
+    border-bottom-left-radius: 18px;
+}
 
 .box-infos {
     border-radius: 8px;
-    padding: 10px;
     background: none;
     transition: background 0.3s;
-    &:hover {
-        background: $highlight-grad;
-    }
 }
 
 .box-tray {
     border-radius: 8px;
     background: none;
     transition: background 0.3s;
-    &:hover {
-        background: $highlight-grad;
-    }
 }
 
 .btn-systrayitem {

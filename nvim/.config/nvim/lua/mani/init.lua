@@ -21,6 +21,9 @@ require("lazy").setup("plugins", {
         enabled = true,
         notify = false
     },
+    git = {
+        timeout = 300
+    },
     performance = {
         rtp = {
             disabled_plugins = {

@@ -7,7 +7,7 @@ export declare class Wifi extends Service {
     private _ap;
     private _apBind;
     constructor(client: NM.Client, device: NM.DeviceWifi);
-    scan(): void;
+    readonly scan: () => void;
     private _activeAp;
     get access_points(): {
         bssid: string | null;
@@ -41,7 +41,7 @@ export declare class Network extends Service {
     primary: null | 'wifi' | 'wired';
     connectivity: string;
     constructor();
-    toggleWifi(): void;
+    readonly toggleWifi: () => void;
     private _getDevice;
     private _clientReady;
     private _sync;

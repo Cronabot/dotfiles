@@ -1,22 +1,23 @@
-import GLib20 from "gi://GLib?version=2.0";
-import { Widget } from "resource:///com/github/Aylur/ags/widget.js"
+import { hyprland } from "resource:///com/github/Aylur/ags/service/hyprland.js"
+import { CenterBox, EventBox, Label, Box } from "resource:///com/github/Aylur/ags/widget.js";
 
-const Clock = () => Widget.EventBox({
-    class_name: "eb-clock",
-    child: Widget.Label({
-        label: GLib20.DateTime.new_now_local().format("%H:%M"),
-        setup: (self) => self.poll(5000, label => {
-            label.label = GLib20.DateTime.new_now_local().format("%H:%M") || "Error";
-        }),
-    }),
-});
+const ActiveWindow = () => EventBox({
+    class_name: "eb-activewin",
+    child: Label().hook(hyprland.active.client, self => {
+        const c = hyprland.active.client
+        let l = c.class || "No Active Window"
+        if (l.length > 20) {
+            l = l.slice(0, 18) + "..."
+        }
+        self.label = l
+    })
+})
 
-
-export const CenterModules = () => Widget.CenterBox({
-        class_name: "box-center",
-        expand: true,
-        spacing: 8,
-        halign: 3,
-        vertical: false,
-        center_widget: Clock()
+export const CenterModules = () => CenterBox({
+    class_name: "box-center",
+    expand: true,
+    spacing: 8,
+    halign: 3,
+    vertical: false,
+    center_widget: ActiveWindow(),
 })

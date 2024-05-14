@@ -38,6 +38,5 @@ return {
             end
             require("nvim-treesitter.configs").setup(opts)
         end,
-
     },
 }

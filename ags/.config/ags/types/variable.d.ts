@@ -9,7 +9,7 @@ import Gio from 'node_modules/@girs/gio-2.0/gio-2.0';
 import { Binding, Props } from './service.js';
 type Listen<T> = [string[] | string, (out: string, self: Variable<T>) => T] | [string[] | string] | string[] | string;
 type Poll<T> = [number, string[] | string | ((self: Variable<T>) => T) | ((self: Variable<T>) => Promise<T>)] | [number, string[] | string, (out: string, self: Variable<T>) => T];
-interface Options<T> {
+export interface Options<T> {
     poll?: Poll<T>;
     listen?: Listen<T>;
 }
@@ -24,15 +24,16 @@ export declare class Variable<T> extends GObject.Object {
     stopPoll(): void;
     startListen(): void;
     stopListen(): void;
-    get isListening(): boolean;
-    get isPolling(): boolean;
+    get is_listening(): boolean;
+    get is_polling(): boolean;
     dispose(): void;
     getValue(): T;
     setValue(value: T): void;
     get value(): T;
     set value(value: T);
     connect(signal: string | undefined, callback: (self: this, ...args: any[]) => void): number;
-    bind<Prop extends keyof Props<this>>(prop?: Prop): Binding<this, Prop, this[Prop]>;
+    bind<P extends keyof Props<this>>(): Binding<this, P, T>;
+    bind<P extends keyof Props<this>>(prop?: P): Binding<this, P, this[P]>;
 }
 declare const _default: <T>(value: T, options?: Options<T> | undefined) => Variable<T>;
 export default _default;

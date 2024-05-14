@@ -1,54 +1,62 @@
-import { Widget } from "resource:///com/github/Aylur/ags/widget.js"
+import GLib20 from "gi://GLib?version=2.0";
+import { execAsync, exec } from "resource:///com/github/Aylur/ags/utils.js";
+import { Box, Icon, Label } from "resource:///com/github/Aylur/ags/widget.js";
+import service from "resource:///com/github/Aylur/ags/service/powerprofiles.js"
 
-export const sysInfo = () => Widget.Box({
-    class_name: "box-panel-sysInfo",
-    expand: true,
+const dateFormat = "%A %F"
+
+export const sysInfo = () => Box({
+    class_name: "box-panel-sys",
     spacing: 8,
+    hexpand: true,
+    vertical: true,
+
     children: [
-        Widget.Box({
-            hpack: "start",
-            vertical: true,
-            children: [
-                Widget.Button({
-                    child: Widget.Box({
-                        spacing: 8,
-                        children: [
-                            Widget.Icon("network-wireless-symbolic"),
-                            Widget.Label("Wifi"),
-                            Widget.Icon({ icon: "go-next-symbolic", hexpand: true, hpack: "end" })
-                        ]
-                    })
-                }),
-                Widget.Button({
-                    child: Widget.Box({
-                        spacing: 8,
-                        children: [
-                            Widget.Icon("bluetooth-symbolic"),
-                            Widget.Label("Bluetooth"),
-                            Widget.Icon({ icon: "go-next-symbolic", hexpand: true, hpack: "end" })
-                        ]
-                    })
-                }),
-                Widget.Box({
-                    children: [
-                        Widget.CircularProgress(),
-                        Widget.CircularProgress(),
-                        Widget.CircularProgress()
-                    ]
-                })
-            ]
+        Label({
+            hexpand: true,
+            hpack: "end",
+            label: GLib20.DateTime.new_now_local().format(dateFormat) || "Error",
+            setup: (self) => self.poll(5000, label => {
+                label.label = GLib20.DateTime.new_now_local().format(dateFormat) || "Error";
+            }),
         }),
-        Widget.Box({
+
+        Box({
+            hexpand: true,
             hpack: "end",
             children: [
-                Widget.Slider({
-                    orientation: 1,
+                Icon("preferences-system-time-symbolic"),
+                Label("  "),
+                Label({
+                    setup: (self) => self
+                        .poll(5000, label => {
+                            execAsync(['bash', '-c', `uptime -p | sed -e 's/up //;s/ hour./h/;s/ minute./m/'`]).then(upTimeString => {
+                                label.label = `${upTimeString}`;
+                            }).catch(print);
+                        })
                 }),
-                Widget.Slider({
-                    orientation: 1,
-                    vpack: "fill",
-                })
             ]
-        })
+        }),
+
+        Box({
+            hexpand: true,
+            hpack: "end",
+            children: [
+                Icon("avatar-default-symbolic"),
+                Label("  "),
+                Label(exec("whoami") + "@" + exec("hostname"))
+            ]
+        }),
+
+        Box({
+            hexpand: true,
+            hpack: "end",
+            children: [
+                Icon().bind("icon", service, "icon_name"),
+                Label("  "),
+                Label().bind("label", service, "active_profile"),
+            ]        
+        }),
+
     ]
 })

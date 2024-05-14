@@ -1,38 +1,37 @@
-import { Widget } from "resource:///com/github/Aylur/ags/widget.js";
 import { WidgetFunction } from "ts/utils";
-import { powerOptions } from "./powerOptions";
-import { sysInfo } from "./sysInfo";
 import { notifDisplay } from "./notifDisplay";
 import { panelToggled } from "../../../vars";
+import { sysInfo } from "./sysInfo";
+import { Window, Box, EventBox, Revealer } from "resource:///com/github/Aylur/ags/widget.js";
 
-export const Panel: WidgetFunction = (monitor = 0) => Widget.Window({
+export const Panel: WidgetFunction = (monitor = 0) => Window({
     name: `panel${monitor}`,
     exclusivity: "normal",
     anchor: ["top", "right"],
+    keymode: "on-demand",
     monitor: monitor,
     margins: [9, 0],
     layer: "top",
     class_name: "panel-window",
-    child: Widget.Box({
+    child: Box({
         css: "padding: 1px;",
         children: [
-            Widget.Revealer({
-                transition_duration: 300,
+            Revealer({
+                transition_duration: 200,
                 transition: 'slide_left',
                 class_name: "panel-revealer",
-                child: Widget.EventBox({
+                child: EventBox({
                     class_name: "panel-bg",
                     margin_right: 9,
-                    child: Widget.Box({
+                    child: Box({
                         vertical: true,
                         spacing: 8,
                         children: [
-                            Widget.Box({
+                            Box({
                                 class_name: "panel-main",
                                 vertical: true,
                                 children: [
-                                    powerOptions(),
-                                    sysInfo()
+                                    sysInfo(),
                                 ]
                             }),
                             notifDisplay(),

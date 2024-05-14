@@ -1,6 +1,6 @@
 import { Notification, notifications } from "resource:///com/github/Aylur/ags/service/notifications.js"
-import { Widget } from "resource:///com/github/Aylur/ags/widget.js"
 import { lookUpIcon } from "resource:///com/github/Aylur/ags/utils.js";
+import { Box, Button, Icon, Label } from "resource:///com/github/Aylur/ags/widget.js";
 
 const NotificationIcon = ({ app_entry, app_icon, image }: Notification) => {
     if (image) {
@@ -22,32 +22,32 @@ const NotificationIcon = ({ app_entry, app_icon, image }: Notification) => {
     if (app_entry && lookUpIcon(app_entry))
         icon = app_entry;
 
-    return Widget.Icon({ icon: icon });
+    return Icon({ icon: icon });
 };
 
-export const notifDisplay = () => Widget.Box({
+export const notifDisplay = () => Box({
     class_name: "box-panel-notifDisplay",
     spacing: 8,
     vertical: true,
     
-}).bind("children", notifications, "notifications", notifs => notifs.map(notif => Widget.Box({
+}).bind("children", notifications, "notifications", notifs => notifs.map(notif => Box({
         class_name: "notification",
         children: [
-            Widget.Box({
+            Box({
                 hpack: "start",
                 child: NotificationIcon(notif)
             }),
-            Widget.Box({
+            Box({
                 hpack: "end",
                 vertical: true,
                 children: [
-                    Widget.Label({
+                    Label({
                         class_name: "notification-title",
                         max_width_chars: 10,
                         justification: 'left',
                         label: notif.summary
                     }),
-                    Widget.Label({
+                    Label({
                         class_name: "notification-body",
                         justification: 'left',
                         label: notif.body,
@@ -56,13 +56,13 @@ export const notifDisplay = () => Widget.Box({
                     })
                 ]
             }),
-            Widget.Button({
+            Button({
                 hpack: "end",
                 vpack: "start",
                 on_primary_click_release: () => {
                     notif.close()
                 },
-                child: Widget.Icon("window-close-symbolic")
+                child: Icon("window-close-symbolic")
             })
         ]
     })))
