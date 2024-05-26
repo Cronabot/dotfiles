@@ -32,4 +32,4 @@ try {
 const main = await import(`file://${outdir}/main.js`)
 main.default.style = css
 
-export default main.default
+App.config(main.default)

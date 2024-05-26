@@ -33,9 +33,9 @@ export const notifDisplay = () => Box({
 }).bind("children", notifications, "notifications", notifs => notifs.map(notif => Box({
         class_name: "notification",
         children: [
-            Box({
+            Box({ 
                 hpack: "start",
-                child: NotificationIcon(notif)
+                children: [ NotificationIcon(notif) ]
             }),
             Box({
                 hpack: "end",

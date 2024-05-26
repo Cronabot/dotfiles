@@ -12,8 +12,5 @@ export const NotificationPopup: WidgetFunction = (monitor = 0) => Window({
         class_name: "notifpopup-main",
         spacing: 8,
         vertical: true
-    }).bind("children", notifications, "popups", popup => popup.map((p) => {
-        console.log(p.summary)
-        return Label(p.summary)
-    }))
+    }).bind("children", notifications, "popups", popup => popup.map(p => Label(p.summary)))
 })

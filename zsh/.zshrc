@@ -23,7 +23,6 @@ alias l="lsd -a"
 alias nv="nvim"
 alias nc="ncat"
 alias ta="tmux a"
-alias cd="z"
 alias tm="auto-tmux-session.sh"
 alias pls="sudo "
 
@@ -45,3 +44,5 @@ eval "$(zoxide init zsh)"
 
 # starship
 eval "$(starship init zsh)"
+
+export PATH=$PATH:/home/ec/.spicetify

@@ -1,9 +1,9 @@
-import { hyprland } from "resource:///com/github/Aylur/ags/service/hyprland.js"
+import { hyprland } from "resource:///com/github/Aylur/ags/service/hyprland.js";
 import { Box, Label } from "resource:///com/github/Aylur/ags/widget.js";
 
 const Workspaces = (monitor: number) => Box({
     class_name: "workspaces",
-    children: [...(Array(9).keys())].map(i => i+monitor*10+1).map(i => Label({
+    children: [...(Array(6).keys())].map(i => i+monitor*10+1).map(i => Label({
         hexpand: true,
         vpack: "center",
         hpack: "fill",
@@ -27,6 +27,5 @@ export const LeftModules = (monitor: number) => Box({
     expand: true,
     spacing: 8,
     halign: 1,
-    vertical: false,
     children: [Label("󰣇"), Workspaces(monitor)]
 })

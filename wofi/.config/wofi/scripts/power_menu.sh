@@ -1,16 +1,19 @@
 #!/bin/sh
 
-entries="Lock\nShutdown\nReboot\nLogout"
+entries="Lock\nShutdown\nReboot\nLogout\nSwitch To Windows"
 
 selected=$(echo -e $entries|wofi --prompt="Power Options" -i --show=dmenu --cache-file /dev/null)
 
 case $selected in
-    Lock)
+    "Lock")
         hyprctl dispatch exec hyprlock;;
-    Shutdown)
-        exec shutdown 0;;
-    Reboot)
-        exec reboot;;
-    Logout)
-        hyprctl dispatch exit
+    "Shutdown")
+        shutdown 0;;
+    "Reboot")
+        reboot;;
+    "Logout")
+        hyprctl dispatch exit;;
+    "Switch To Windows")
+        grub-reboot "Windows"
+        reboot
 esac

@@ -3,7 +3,7 @@ import { execAsync, exec } from "resource:///com/github/Aylur/ags/utils.js";
 import { Box, Icon, Label } from "resource:///com/github/Aylur/ags/widget.js";
 import service from "resource:///com/github/Aylur/ags/service/powerprofiles.js"
 
-const dateFormat = "%A %F"
+const dateFormat = "%a %F"
 
 export const sysInfo = () => Box({
     class_name: "box-panel-sys",
@@ -12,21 +12,38 @@ export const sysInfo = () => Box({
     vertical: true,
 
     children: [
-        Label({
+        Box({
             hexpand: true,
             hpack: "end",
-            label: GLib20.DateTime.new_now_local().format(dateFormat) || "Error",
-            setup: (self) => self.poll(5000, label => {
-                label.label = GLib20.DateTime.new_now_local().format(dateFormat) || "Error";
-            }),
+            tooltipText: "Date",
+            children: [
+                Label({
+                    label: GLib20.DateTime.new_now_local().format(dateFormat) || "Error",
+                    setup: (self) => self.poll(5000, label => {
+                        label.label = GLib20.DateTime.new_now_local().format(dateFormat) || "Error";
+                    }),
+                }),
+                Label("  "),
+                Icon("x-office-calendar-symbolic"),
+            ]
         }),
 
         Box({
             hexpand: true,
             hpack: "end",
+            tooltipText: "User",
             children: [
-                Icon("preferences-system-time-symbolic"),
+                Label(exec("whoami") + "@" + exec("hostname")),
                 Label("  "),
+                Icon("avatar-default-symbolic"),
+            ]
+        }),
+
+        Box({
+            hexpand: true,
+            hpack: "end",
+            tooltipText: "Uptime",
+            children: [
                 Label({
                     setup: (self) => self
                         .poll(5000, label => {
@@ -35,26 +52,19 @@ export const sysInfo = () => Box({
                             }).catch(print);
                         })
                 }),
+                Label("  "),
+                Icon("preferences-system-time-symbolic"),
             ]
         }),
 
         Box({
             hexpand: true,
             hpack: "end",
+            tooltipText: "Power Profile",
             children: [
-                Icon("avatar-default-symbolic"),
-                Label("  "),
-                Label(exec("whoami") + "@" + exec("hostname"))
-            ]
-        }),
-
-        Box({
-            hexpand: true,
-            hpack: "end",
-            children: [
-                Icon().bind("icon", service, "icon_name"),
-                Label("  "),
                 Label().bind("label", service, "active_profile"),
+                Label("  "),
+                Icon().bind("icon", service, "icon_name"),
             ]        
         }),
 

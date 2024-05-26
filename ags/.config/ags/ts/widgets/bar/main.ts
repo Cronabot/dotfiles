@@ -18,23 +18,19 @@ export const Bar: WidgetFunction = (monitor = 0) => Window({
     }),
 })
 
-export const BarInvertedCorners: WidgetFunction = (monitor = 0) => Window({
+export const BarCornerOverlay: WidgetFunction = (monitor = 0) => Window({
     name: `baric${monitor}`,
     monitor: monitor,
 
     click_through: true,
     anchor: ["top", "left", "right"],
     child: CenterBox({
-        start_widget: BarInvertedCornerLeft(),
-        end_widget: BarInvertedCornerRight()
+        start_widget: Box({
+            class_name: "b-icl",
+        }),
+        end_widget: Box({
+            class_name: "b-icr",
+        }),
+
     })
-})
-
-
-const BarInvertedCornerLeft = () => Box({
-    class_name: "b-icl",
-})
-
-const BarInvertedCornerRight = () => Box({
-    class_name: "b-icr",
 })
