@@ -81,6 +81,5 @@ export const RightModules = () => Box({
     expand: true,
     spacing: 8,
     halign: 2,
-    vertical: false,
     children: [Tray(), Infos()]
 })

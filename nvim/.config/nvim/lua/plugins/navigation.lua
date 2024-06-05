@@ -43,7 +43,7 @@ return {
         end,
     },
     {
-        'nvim-telescope/telescope-fzf-native.nvim',
+        "nvim-telescope/telescope-fzf-native.nvim",
         build = 'make'
     },
     {
@@ -63,7 +63,10 @@ return {
             { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
         },
     },
-
+    {
+        "knubie/vim-kitty-navigator",
+        event = "VeryLazy"
+    },
     { 
         "nvim-lualine/lualine.nvim",
         event = "VeryLazy",

@@ -10,5 +10,10 @@ format = '[$user]($style)'
 show_always = true
 
 [hostname]
-ssh_only=false
 style = 'purple bold'
+ssh_only = false
+
+[directory]
+truncation_length = 5
+truncate_to_repo = false
+

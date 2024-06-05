@@ -37,6 +37,15 @@ window.background {
 
     label {
         color: $primary;
+        &.active {
+            color: $accent;
+        }
+    }
+
+    .eb-activewin {
+        label {
+            color: unset;
+        }
     }
 
     border-bottom-right-radius: 18px;
@@ -47,17 +56,13 @@ window.background {
         min-width: 1rem;
         min-height: 1rem;
         color: unset;
-        &.active {
-            color: $accent;
-        }
     }
-
 }
 
 // CENTER
 
 .box-center {
-    padding: 4px 16px;
+    padding: 6px 16px;
     background-color: $background;
     border-bottom-right-radius: 18px;
     border-bottom-left-radius: 18px;

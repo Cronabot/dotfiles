@@ -1,14 +1,22 @@
 @use 'bar';
 @use 'panel';
 
-.red-text {
-    color: red;
+@import 'colors';
+
+* {
+    font-weight: bold;
 }
 
-.green-text {
-    color: greenyellow;
+.bg {
+    background-color: $background;
 }
 
-.orange-text {
-    color: orange;
+.monitor-workspace-main {
+    background-color: red;
+}
+
+.workspace-container {
+    background-color: blue;
+    min-width: 128px;
+    min-height: 72px;
 }

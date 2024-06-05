@@ -13,19 +13,15 @@ SAVEHIST=10000
 setopt appendhistory
 
 ## Env
-export SUDO_PROMPT="sure :) "
+export SUDO_PROMPT="password: "
 export EDITOR=nvim
 export VISUAL=nvim
-
 
 ## Aliases
 alias l="lsd -a"
 alias nv="nvim"
-alias nc="ncat"
-alias ta="tmux a"
+alias nc="ncat" alias ta="tmux a"
 alias tm="auto-tmux-session.sh"
-alias pls="sudo "
-
 
 ## Binds
 
@@ -39,10 +35,12 @@ bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+export PATH=$PATH:/home/ec/.spicetify
+
 # zoxide
 eval "$(zoxide init zsh)"
 
 # starship
 eval "$(starship init zsh)"
 
-export PATH=$PATH:/home/ec/.spicetify
+fastfetch

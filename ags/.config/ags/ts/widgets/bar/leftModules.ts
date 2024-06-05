@@ -1,25 +1,26 @@
 import { hyprland } from "resource:///com/github/Aylur/ags/service/hyprland.js";
-import { Box, Label } from "resource:///com/github/Aylur/ags/widget.js";
+import { Box, EventBox, Label } from "resource:///com/github/Aylur/ags/widget.js";
+import { ellipsisTruncate, getMonitorWorkspace } from "../../utils";
 
-const Workspaces = (monitor: number) => Box({
+const Workspace = (monitor: number) => Box({
     class_name: "workspaces",
-    children: [...(Array(6).keys())].map(i => i+monitor*10+1).map(i => Label({
+    child: Label({
         hexpand: true,
         vpack: "center",
         hpack: "fill",
-        //label: `${i-monitor*10-1}`,
         setup: self => self.hook(hyprland, () => {
-            self.toggleClassName("active", hyprland.active.workspace.id === i)
-            if (hyprland.getWorkspace(i)?.windows || 0 > 0) {
-                self.toggleClassName("occupied", true)
-                self.label = "•"
-            } else {
-                self.toggleClassName("occupied", false)
-                self.label = "◦"
-            }
+            self.label = getMonitorWorkspace(monitor).toString()
+        })
+    })
+})
 
-        }),
-    })),
+const ActiveWindow = () => EventBox({
+    class_name: "eb-activewin",
+    child: Label().hook(hyprland.active.client, self => {
+        const c = hyprland.active.client
+        let l = c.class || "No Active Window"
+        self.label = ellipsisTruncate(l, 20)
+    })
 })
 
 export const LeftModules = (monitor: number) => Box({
@@ -27,5 +28,5 @@ export const LeftModules = (monitor: number) => Box({
     expand: true,
     spacing: 8,
     halign: 1,
-    children: [Label("󰣇"), Workspaces(monitor)]
+    children: [Label("󰋙"), Workspace(monitor), ActiveWindow()]
 })

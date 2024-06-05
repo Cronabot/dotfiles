@@ -1,23 +1,32 @@
-import { hyprland } from "resource:///com/github/Aylur/ags/service/hyprland.js"
-import { CenterBox, EventBox, Label, Box } from "resource:///com/github/Aylur/ags/widget.js";
+import { mpris } from "resource:///com/github/Aylur/ags/service/mpris.js";
+import { CenterBox, EventBox, Label, Box, Revealer } from "resource:///com/github/Aylur/ags/widget.js";
+import { ellipsisTruncate } from "../../utils";
 
-const ActiveWindow = () => EventBox({
-    class_name: "eb-activewin",
-    child: Label().hook(hyprland.active.client, self => {
-        const c = hyprland.active.client
-        let l = c.class || "No Active Window"
-        if (l.length > 20) {
-            l = l.slice(0, 18) + "..."
+const MprisInfo = () => EventBox({
+    child: Label({
+        class_name: "box-center",
+        label: "No Players Available"
+    }).hook(mpris, self => {
+        if (mpris.players.length == 0) {
+            return "No Players Available"
         }
-        self.label = l
+        let p = mpris.players[0]
+
+        let a = p.track_title
+        let b = p.track_artists.join(", ")
+
+        self.label = `${ellipsisTruncate(a, 20)} - ${ellipsisTruncate(b, 15)}`
     })
 })
 
-export const CenterModules = () => CenterBox({
-    class_name: "box-center",
-    expand: true,
-    spacing: 8,
-    halign: 3,
-    vertical: false,
-    center_widget: ActiveWindow(),
+
+export const CenterModules = () => Box({
+    child: Revealer({
+        transition_duration: 200,
+        transition: "slide_down",
+        vpack: "start",
+        child: MprisInfo(),
+    }).hook(mpris, self => {
+        self.reveal_child = mpris.players.length > 0
+    }),
 })
