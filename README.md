@@ -4,7 +4,11 @@ This repository contains my personal dotfiles, built on [Hyprland](https://githu
 
 ## Screenshots
 
-![Desktop Screenshot 1](./screenshots/desktop1.png)
+![Desktop Screenshot 1](./assets/desktop1.png)
+
+## Notable Features
+
+Dynamic background
 
 ## Installation
 
@@ -14,6 +18,7 @@ This repository contains my personal dotfiles, built on [Hyprland](https://githu
 - [Hyprland](https://github.com/hyprwm/Hyprland) (Wayland compositor)
 - [ags](https://github.com/Aylur/ags) (bar + widgets)
 - [kitty](https://github.com/kovidgoyal/kitty) (terminal)
+- [swww](https://github.com/Horus645/swww) (background)
 - [zsh](https://www.zsh.org/) (shell)
 - [wofi](https://hg.sr.ht/~scoopta/wofi) (application launcher)
 - [stow](https://www.gnu.org/software/stow) (dotfiles manager)
@@ -23,6 +28,7 @@ This repository contains my personal dotfiles, built on [Hyprland](https://githu
 - [neovim](https://github.com/neovim/neovim) (text editor)
 - [cava](https://github.com/karlstav/cava) (audio visualiser)
 - [fastfetch](https://github.com/fastfetch-cli/fastfetch) (system information)
+- [cliphist](https://github.com/sentriz/cliphist) (clipboard history tracker)
 - [tmux](https://github.com/tmux/tmux) (terminal workflow)
 
 ### Install
