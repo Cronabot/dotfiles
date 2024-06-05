@@ -2,6 +2,10 @@
 
 This repository contains my personal dotfiles, built on [Hyprland](https://github.com/hyprwm/Hyprland) with heavy use of [ags](https://github.com/Aylur/ags/)
 
+## Screenshots
+
+![Desktop Screenshot 1](./screenshots/desktop1.png)
+
 ## Installation
 
 ### Requirements
@@ -11,14 +15,15 @@ This repository contains my personal dotfiles, built on [Hyprland](https://githu
 - [ags](https://github.com/Aylur/ags) (bar + widgets)
 - [kitty](https://github.com/kovidgoyal/kitty) (terminal)
 - [zsh](https://www.zsh.org/) (shell)
+- [wofi](https://hg.sr.ht/~scoopta/wofi) (application launcher)
 - [stow](https://www.gnu.org/software/stow) (dotfiles manager)
 
 #### Optional Programs
 
 - [neovim](https://github.com/neovim/neovim) (text editor)
-- [ncspot](https://github.com/hrkfdn/ncspot) (spotify client)
 - [cava](https://github.com/karlstav/cava) (audio visualiser)
-- [neofetch](https://github.com/dylanaraps/neofetch) (system information)
+- [fastfetch](https://github.com/fastfetch-cli/fastfetch) (system information)
+- [tmux](https://github.com/tmux/tmux) (terminal workflow)
 
 ### Install
 
@@ -27,7 +32,7 @@ First, install all of the [required programs](#Requirements).
 Next, clone this repository to your $HOME directory
 
 ```
-$ git clone git@github.com:Cronabot/dotfiles.git
+$ git clone https://github.com/Cronabot/dotfiles.git
 $ cd dotfiles
 ```
 
