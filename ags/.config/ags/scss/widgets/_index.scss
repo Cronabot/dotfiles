@@ -1,5 +1,6 @@
 @use 'bar';
 @use 'panel';
+@use 'overview';
 
 @import 'colors';
 
@@ -11,12 +12,3 @@
     background-color: $background;
 }
 
-.monitor-workspace-main {
-    background-color: red;
-}
-
-.workspace-container {
-    background-color: blue;
-    min-width: 128px;
-    min-height: 72px;
-}

@@ -8,7 +8,6 @@ export const ControlPanel: WidgetFunction = () => Window({
     name: `controlPanel`,
     exclusivity: "normal",
     monitor: hyprland.bind("active").as(active => active.monitor.id),
-    margins: [9, 0],
     visible: false,
     layer: "overlay",
     keymode: "exclusive",

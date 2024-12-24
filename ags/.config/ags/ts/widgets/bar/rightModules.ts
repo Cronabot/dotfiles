@@ -45,7 +45,7 @@ const NotificationInfo = () => Box({
 const Infos = () => EventBox({
     class_name: "box-infos",
     on_primary_click_release: () => {
-        panelToggled.setValue(!panelToggled.getValue())
+        Utils.execAsync("ags -t controlPanel")
     },
     child: Box({
         spacing: 8,

@@ -1,35 +1,40 @@
 import App from 'resource:///com/github/Aylur/ags/app.js'
 import { exec, execAsync } from 'resource:///com/github/Aylur/ags/utils.js'
 
-// Building SCSS files
+const outdir = "/tmp/ags"
 
-const scss = `${App.configDir}/scss/main.scss`
-const css = `/tmp/ags/css/main.css`
-try {
-    await execAsync(`sass ${scss} ${css}`)
-    console.log("Built Sass")
-} catch (error) {
-    console.log(error || "")
+// Building scss files
+const scssdir = `${App.configDir}/scss`;
+
+const updateStyles = async () => {
+    try {
+        await execAsync(`sass ${scssdir}/main.scss ${outdir}/css/main.css`)
+        App.resetCss()
+        App.applyCss(`${outdir}/css/main.css`)
+    } catch (error) {
+        console.log(error || "")
+    }
 }
+
+await updateStyles()
+
+Utils.monitorFile(scssdir, async () => {
+    updateStyles()
+})
 
 // Building Typescript files
 const entry = `${App.configDir}/ts/main.ts`
-const outdir = '/tmp/ags/js'
 
 try {
     await execAsync([
         'bun', 'build', entry,
-        '--outdir', outdir,
+        '--outdir', `${outdir}/js`,
         '--external', 'resource://*',
         '--external', 'gi://*',
     ])
+    await import(`file://${outdir}/js/main.js`)
     console.log("Built TS")
 } catch (error) {
     console.error(error || "")
 }
 
-
-const main = await import(`file://${outdir}/main.js`)
-main.default.style = css
-
-App.config(main.default)

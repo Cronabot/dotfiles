@@ -1,14 +1,13 @@
 import { Bar, BarCornerOverlay } from './widgets/bar/main';
 import { Monitor } from 'types/service/hyprland';
 import { WidgetFunction } from './utils';
-import { NotificationPopup } from './widgets/notification-popups/main';
+import { NotificationPopups } from './widgets/notification-popups/main';
 import Window from '../types/widgets/window';
 import { WallpaperDisplay } from './widgets/wallpaper-display/main';
 import { Calculator } from './widgets/calculator/main';
 import { ControlPanel } from './widgets/controlPanel/main';
 import { Overview } from './widgets/overview/main';
 
-console.log("Loading widgets")
 console.log("Checking monitor count")
 const monitors: Monitor[] = JSON.parse(Utils.exec("hyprctl monitors -j"))
 console.log(`Found ${monitors.length} monitors`)
@@ -24,11 +23,12 @@ const forMonitor = (w: WidgetFunction) => {
 }
 
 const windows = () => {
+    console.log("Loading widgets")
     const wins = [
         forMonitor(Bar),
         forMonitor(BarCornerOverlay),
         forMonitor(WallpaperDisplay),
-        NotificationPopup(),
+        NotificationPopups(),
         ControlPanel(),
         Overview(),
         Calculator()
@@ -42,7 +42,7 @@ const load = () => {
     return loadedWins
 }
 
-export default { 
+App.config({ 
     windows: load()
-};
+});
 

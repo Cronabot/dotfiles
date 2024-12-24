@@ -7,7 +7,6 @@ import { Window, Box, CenterBox } from "resource:///com/github/Aylur/ags/widget.
 export const Bar: WidgetFunction = (monitor = 0) => Window({
     name: `bar${monitor}`,
     monitor: monitor,
-
     exclusivity: "exclusive",
     anchor: ["top", "left", "right"],
     child: CenterBox({
