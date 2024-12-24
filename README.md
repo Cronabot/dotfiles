@@ -8,7 +8,10 @@ This repository contains my personal dotfiles, built on [Hyprland](https://githu
 
 ## Notable Features
 
-Dynamic background
+- Dynamic background
+- Custom status bar
+- kitty/neovim workflow
+- Cohesive colour scheme
 
 ## Installation
 
@@ -29,7 +32,6 @@ Dynamic background
 - [cava](https://github.com/karlstav/cava) (audio visualiser)
 - [fastfetch](https://github.com/fastfetch-cli/fastfetch) (system information)
 - [cliphist](https://github.com/sentriz/cliphist) (clipboard history tracker)
-- [tmux](https://github.com/tmux/tmux) (terminal workflow)
 
 ### Install
 

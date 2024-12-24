@@ -1,0 +1,66 @@
+#:schema https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+version = 2
+final_space = true
+console_title_template = '{{ .Shell }} in {{ .Folder }}'
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    type = 'text'
+    style = 'plain'
+    background = 'transparent'
+    foreground = 'lightBlue'
+    template = ''
+
+  [[blocks.segments]]
+    type = 'text'
+    style = 'plain'
+    background = 'transparent'
+    foreground = 'lightBlue'
+    template = "┌[󰣇] <b><magenta>{{ .UserName }}@{{ .HostName }}</></b> <white>in</> <b>{{ .PWD }}</b>"
+
+  [[blocks.segments]]
+    type = 'git'
+    style = 'plain'
+    foreground = 'p:grey'
+    background = 'transparent'
+    template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
+
+    [blocks.segments.properties]
+      branch_icon = ''
+      commit_icon = '@'
+      fetch_status = true
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    type = 'text'
+    style = 'plain'
+    background = 'transparent'
+    foreground = 'lightBlue'
+    template = '└─'
+
+  [[blocks.segments]]
+    type = 'text'
+    style = 'plain'
+    foreground = 'lightBlue'
+    background = 'transparent'
+    template = '$'
+
+[transient_prompt]
+  foreground = 'lightBlue'
+  background = 'transparent'
+  template = '❯ '
+
+[secondary_prompt]
+  foreground = 'lightBlue'
+  background = 'transparent'
+  template = '❯❯ '
+

@@ -92,11 +92,10 @@ const WorkspaceContainer = (ws: Workspace, monitor: Monitor) => {
 const MonitorWorkspaces = (monitor: Monitor) => Box({
     spacing: 8,
     class_name: "monitor-workspace",
-})
-    .hook(hyprland, self => {
+}).hook(hyprland, self => {
         let workspaces = hyprland.workspaces.filter(ws => {
-            return ws.monitorID == monitor.id && !ws.name.match("^special:")
-        }).sort((a, b) => {
+            return ws.monitorID == monitor.id && ws.id > 0
+        }).sort((a, b) => { // Sort workspace id's in ascending order
             return a.id - b.id
         })
         self.children = workspaces.map(ws => {
@@ -109,7 +108,7 @@ export const Overview: WidgetFunction = () => Window({
     exclusivity: "normal",
     monitor: hyprland.bind("active").as(active => active.monitor.id),
     anchor: ["top"],
-    margins: [8, 0],
+    margins: [0, 0],
     visible: false,
     layer: "overlay",
     keymode: "on-demand",
@@ -117,10 +116,10 @@ export const Overview: WidgetFunction = () => Window({
         vertical: true,
         spacing: 8,
         class_name: "overview-main",
-        children: hyprland.monitors.map(mon => {
+    }).hook(hyprland, self => {
+        self.children = hyprland.monitors.map(mon => {
             return MonitorWorkspaces(mon)
         })
-
     }),
     setup: self => {
         self.keybind("Escape", (_, e) => {
