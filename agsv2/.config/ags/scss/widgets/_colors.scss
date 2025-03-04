@@ -1,0 +1,12 @@
+@use 'sass:color';
+
+$foreground: #fff;
+$background-col: #282828;
+$background: rgba($background-col, 1);
+$backgroundl: color.adjust($background-col, $lightness: 10%);
+
+$highlight-grad: linear-gradient(90deg, rgba($background-col, 0.3) 0%, rgba($background-col, 0.35) 100%);
+
+$primary: #78a9ff;
+$primaryl: #be95ff;
+$accent: #be95ff;

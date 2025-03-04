@@ -1,0 +1,10 @@
+@use 'colors';
+
+.control-panel {
+    border: 2px colors.$primary solid;
+}
+
+.panel-main {
+    padding: 8px;
+    background-color: colors.$background;
+}

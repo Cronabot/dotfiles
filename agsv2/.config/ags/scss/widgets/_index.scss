@@ -1,0 +1,27 @@
+@use 'bar';
+@use 'controlPanel';
+@use 'overview';
+
+@use 'colors';
+
+* {
+    font-weight: bold;
+}
+
+.bg {
+    background: colors.$background;
+}
+
+.no-bg {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.dim-bg {
+    background: colors.$background;
+    opacity: 0.7;
+}
+
+.highlight {
+    color: colors.$accent;
+}
+
