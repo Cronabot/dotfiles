@@ -1,11 +1,18 @@
-import { bind } from "astal"
-import Hyprland from "gi://AstalHyprland"
-import { getMonitorWorkspace } from "../../../utils"
+import { bind } from "astal";
+import { Widget, Gtk } from "astal/gtk3";
+import Hyprland from "gi://AstalHyprland";
+import { GdkMonitorToHypr, getMonitorWorkspace } from "../../../utils.ts";
 
-export const Workspace = ({monitor}: { monitor: number }) => {
-    const hypr = Hyprland.get_default()
+export const Workspace = ({ mon }: { mon: Hyprland.Monitor }) => {
+    const hypr = Hyprland.get_default();
 
-    return <label label={bind(hypr, "focusedWorkspace").as(ws => {
-        return getMonitorWorkspace(monitor).toString()
-    })} />
-}
+    return (
+        <box hexpand={true}>
+            <label
+                label={bind(hypr, "focusedWorkspace").as((ws) => {
+                    return getMonitorWorkspace(mon.id).toString();
+                })}
+            />
+        </box>
+    );
+};
