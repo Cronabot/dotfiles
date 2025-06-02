@@ -1,32 +1,30 @@
 @use 'colors';
 
 * {
-    font-weight: bold;
-    background-color: rgba(0, 0, 0, 0);
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0);
 }
 
-.bar {
-    border-bottom: colors.$primary 2px solid;
-}
-
-.bar-left, .bar-right, .bar-center {
-    padding: 0 12px;
+.bar-left,
+.bar-right,
+.bar-center {
+  padding: 0 12px;
 }
 
 .box-infos {
-    border-radius: 8px;
-    transition: background 0.3s;
+  border-radius: 8px;
+  transition: background 0.3s;
 }
 
 .tray {
-    border-radius: 8px;
-    transition: background 0.3s;
+  border-radius: 8px;
+  transition: background 0.3s;
 }
 
 .tray-item {
-    margin: 0;
-    padding: 4px 4px;
-    background: none;
-    border: none;
-    text-shadow: none;
+  margin: 0;
+  padding: 4px 4px;
+  background: none;
+  border: none;
+  text-shadow: none;
 }

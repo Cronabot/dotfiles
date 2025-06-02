@@ -14,6 +14,26 @@ export const getMonitorWorkspace = (monitor: number): number => {
     return parseInt(wsStr.slice(-1));
 };
 
+export const getMonitorWorkspaces = (monitor: number): Hyprland.Workspace[] => {
+    const sortF = (a: any, b: any) => a.id - b.id;
+
+    const hypr = Hyprland.get_default();
+
+    if (!hypr.monitors[monitor]) return [];
+
+    let sortedMons = hypr.monitors.sort(sortF);
+
+    const workspaces = hypr.workspaces.filter((ws) => {
+        const wsMon = ws.id.toString().padStart(2, "0")[0];
+        if (wsMon == sortedMons[monitor].id.toString()) return true;
+        return false;
+    });
+
+    workspaces.sort(sortF);
+
+    return workspaces;
+};
+
 export const GdkMonitorToHypr = (gdkmonitor: Gdk.Monitor): Hyprland.Monitor => {
     const hypr = Hyprland.get_default();
 

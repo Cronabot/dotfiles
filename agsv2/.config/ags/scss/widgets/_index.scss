@@ -5,23 +5,26 @@
 @use 'colors';
 
 * {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .bg {
-    background: colors.$background;
+  background: colors.$background;
+}
+
+.bg-highlight {
+  background: colors.$primary;
 }
 
 .no-bg {
-    background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .dim-bg {
-    background: colors.$background;
-    opacity: 0.7;
+  background: colors.$background;
+  opacity: 0.7;
 }
 
 .highlight {
-    color: colors.$accent;
+  color: colors.$accent;
 }
-
