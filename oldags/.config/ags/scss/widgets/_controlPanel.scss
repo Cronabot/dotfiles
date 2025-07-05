@@ -1,0 +1,36 @@
+@use 'colors';
+
+.panel-main {
+  padding: 8px;
+  background-color: colors.$background;
+}
+
+.panel {
+  padding: 8px;
+  border: colors.$primary solid 2px;
+  background-color: colors.$background;
+}
+
+.playerProgress {
+  margin: 8px;
+
+  trough {
+    border: none;
+    background-color: colors.$backgroundl;
+
+    progress {
+      background: colors.$accent;
+      border: none;
+      border-radius: 100px;
+    }
+  }
+}
+
+.player-button {
+  background: none;
+  border: none;
+
+  &:hover {
+    background: colors.$backgroundl
+  }
+}
