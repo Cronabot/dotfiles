@@ -13,6 +13,7 @@ export const WifiDisp = () => {
                 return (
                     <>
                         <icon icon={wifi.iconName} />
+                        <icon icon="st-logo-symbolic" />
                         <label expand={true} halign={Gtk.Align.END}>
                             {wifi.ssid}
                         </label>

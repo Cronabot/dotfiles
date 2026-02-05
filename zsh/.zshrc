@@ -17,6 +17,8 @@ export VISUAL=nvim
 export PATH=$PATH:/home/ec/.spicetify
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+export PATH="$PATH:$GEM_HOME/bin"
 
 ## Aliases
 alias l="lsd -a"

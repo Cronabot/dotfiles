@@ -1,14 +1,24 @@
 import datetime
+
 from kitty.fast_data_types import Screen, get_options
-from kitty.tab_bar import (DrawData, ExtraData, TabBarData, Formatter , as_rgb, draw_tab_with_powerline, draw_attributed_string)
+from kitty.tab_bar import (
+    DrawData,
+    ExtraData,
+    Formatter,
+    TabBarData,
+    as_rgb,
+    draw_attributed_string,
+    draw_tab_with_powerline,
+)
 from kitty.utils import color_as_int
 
 opts = get_options()
 
 CLOCK_FG = as_rgb(color_as_int(opts.background))
-CLOCK_BG = as_rgb(color_as_int(opts.color12))
+CLOCK_BG = as_rgb(color_as_int(opts.color1))
 DATE_FG = as_rgb(color_as_int(opts.background))
-DATE_BG = as_rgb(color_as_int(opts.color12))
+DATE_BG = as_rgb(color_as_int(opts.color1))
+
 
 def _draw_right_status(screen: Screen, is_last: bool) -> int:
     if not is_last:

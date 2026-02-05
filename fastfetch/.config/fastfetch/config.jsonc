@@ -20,6 +20,9 @@
         {
             "type": "colors",
             "symbol": "circle",
+            "block": {
+                "range": [0, 7]
+            },
         }
     ]
 }

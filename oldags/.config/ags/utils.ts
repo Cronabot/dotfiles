@@ -10,8 +10,11 @@ export const getMonitorWorkspace = (monitor: number): number => {
     let activeWs = sortedMons[monitor].activeWorkspace;
     if (!activeWs) return -1;
     let wsStr = activeWs.id.toString();
+    let strippedws =
+        wsStr.length === 1 ? wsStr : wsStr.padStart(3, "0").slice(1);
 
-    return parseInt(wsStr.slice(-1));
+    let wsInt = parseInt(strippedws);
+    return wsInt;
 };
 
 export const getMonitorWorkspaces = (monitor: number): Hyprland.Workspace[] => {
@@ -24,7 +27,7 @@ export const getMonitorWorkspaces = (monitor: number): Hyprland.Workspace[] => {
     let sortedMons = hypr.monitors.sort(sortF);
 
     const workspaces = hypr.workspaces.filter((ws) => {
-        const wsMon = ws.id.toString().padStart(2, "0")[0];
+        const wsMon = ws.id.toString().padStart(3, "0")[0];
         if (wsMon == sortedMons[monitor].id.toString()) return true;
         return false;
     });

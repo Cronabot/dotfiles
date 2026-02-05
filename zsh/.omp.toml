@@ -4,6 +4,9 @@ version = 2
 final_space = true
 console_title_template = '{{ .Shell }} in {{ .Folder }}'
 
+[palette]
+primary = "#806d71"
+
 [[blocks]]
   type = 'prompt'
   alignment = 'left'
@@ -13,15 +16,15 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
     type = 'text'
     style = 'plain'
     background = 'transparent'
-    foreground = 'lightBlue'
+    foreground = 'p:primary'
     template = ''
 
   [[blocks.segments]]
     type = 'text'
     style = 'plain'
     background = 'transparent'
-    foreground = 'lightBlue'
-    template = "┌[󰣇] <b><magenta>{{ .UserName }}@{{ .HostName }}</></b> <white>in</> <b>{{ .PWD }}</b>"
+    foreground = 'p:primary'
+    template = "┌[󰣇] <b><white>{{ .UserName }}@{{ .HostName }}</></b> <white>in</> <b>{{ .PWD }}</b>"
 
   [[blocks.segments]]
     type = 'git'
@@ -44,23 +47,16 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
     type = 'text'
     style = 'plain'
     background = 'transparent'
-    foreground = 'lightBlue'
-    template = '└─'
-
-  [[blocks.segments]]
-    type = 'text'
-    style = 'plain'
-    foreground = 'lightBlue'
-    background = 'transparent'
-    template = '$'
+    foreground = 'p:primary'
+    template = '└─$'
 
 [transient_prompt]
-  foreground = 'lightBlue'
+  foreground = 'red'
   background = 'transparent'
   template = '❯ '
 
 [secondary_prompt]
-  foreground = 'lightBlue'
+  foreground = 'red'
   background = 'transparent'
   template = '❯❯ '
 

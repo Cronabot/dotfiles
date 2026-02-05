@@ -41,7 +41,7 @@ export const Indicator = ({ mon }: { mon: Hyprland.Monitor }) => {
                     const interval = mon.width / workspaces.length;
 
                     // Draw Workspaces first
-                    for (let i = 0; i < 6; i++) {
+                    for (let i = 0; i < 10; i++) {
                         cr.setSourceRGBA(0.75, 0.66, 1, 1); // accent
                         if (workspaces[i].clients.length <= 0) {
                             cr.rectangle(interval * i + 1, 0, interval - 2, 1);

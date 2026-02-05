@@ -1,4 +1,4 @@
-import { Gdk } from "astal/gtk3";
+import { Gdk } from "ags/gtk4";
 import Hyprland from "gi://AstalHyprland";
 
 export const getMonitorWorkspace = (monitor: number): number => {
@@ -17,6 +17,13 @@ export const getMonitorWorkspace = (monitor: number): number => {
     return wsInt;
 };
 
+export const wsMonFilter =
+    (mon: Hyprland.Monitor) => (ws: Hyprland.Workspace) => {
+        const wsMon = ws.id.toString().padStart(3, "0")[0];
+        if (wsMon == mon.id.toString()) return true;
+        return false;
+    };
+
 export const getMonitorWorkspaces = (monitor: number): Hyprland.Workspace[] => {
     const sortF = (a: any, b: any) => a.id - b.id;
 
@@ -26,11 +33,7 @@ export const getMonitorWorkspaces = (monitor: number): Hyprland.Workspace[] => {
 
     let sortedMons = hypr.monitors.sort(sortF);
 
-    const workspaces = hypr.workspaces.filter((ws) => {
-        const wsMon = ws.id.toString().padStart(3, "0")[0];
-        if (wsMon == sortedMons[monitor].id.toString()) return true;
-        return false;
-    });
+    const workspaces = hypr.workspaces.filter(wsMonFilter(sortedMons[monitor]));
 
     workspaces.sort(sortF);
 

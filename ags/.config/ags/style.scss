@@ -1,0 +1,27 @@
+$fg-color: #{"@theme_fg_color"};
+$bg-color: #{"@theme_bg_color"};
+
+$fg: #d3d0c6;
+$bg: #30302e;
+$bgl: #414143;
+$primary: #806d71;
+$accent: #7d4c5a;
+
+window.Bar {
+  .indicator {
+    transition: background-color 0.3s;
+
+    &.active {
+      background-color: $accent;
+    }
+
+    &.populated {
+      background-color: $primary;
+    }
+
+    &.empty {
+      background-color: $bg;
+    }
+
+  }
+}

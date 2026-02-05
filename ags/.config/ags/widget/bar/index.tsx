@@ -1,51 +1,61 @@
-import { App, Astal, Gtk, Gdk } from "astal/gtk3";
-import { GdkMonitorToHypr } from "../../utils.ts";
-import { TrayContainer } from "./items/Tray.tsx";
-import { BatteryInfo } from "./items/Battery.tsx";
-import { Clock } from "./items/Clock.tsx";
-import { Workspace } from "./items/Workspace.tsx";
-import { ActiveWindow } from "./items/ActiveWindow.tsx";
-import { Indicator } from "./items/Indicator.tsx";
+import { Astal, Gdk, Gtk } from "ags/gtk4";
+import app from "ags/gtk4/app";
+import Hyprland from "gi://AstalHyprland";
+import {
+    GdkMonitorToHypr,
+    getMonitorWorkspace,
+    getMonitorWorkspaces,
+} from "../../utils";
+import { createState, onCleanup } from "ags";
 
-const Bar = (gdkmonitor: Gdk.Monitor) => {
+const height = 3;
+
+const Bar = ({ gdkmonitor }: { gdkmonitor: Gdk.Monitor }) => {
+    const { TOP, LEFT, RIGHT } = Astal.WindowAnchor;
     const mon = GdkMonitorToHypr(gdkmonitor);
+
+    const hypr = Hyprland.get_default();
+
+    const [mwss, setMwss] = createState<Hyprland.Workspace[]>([]);
+
+    const id = hypr.connect("event", () => {
+        setMwss(getMonitorWorkspaces(mon.id));
+    });
+
+    onCleanup(() => hypr.disconnect(id));
 
     return (
         <window
-            name={"bar" + GdkMonitorToHypr(gdkmonitor).id}
+            visible
+            name="bar"
+            class="Bar"
             gdkmonitor={gdkmonitor}
             exclusivity={Astal.Exclusivity.EXCLUSIVE}
-            anchor={
-                Astal.WindowAnchor.TOP |
-                Astal.WindowAnchor.LEFT |
-                Astal.WindowAnchor.RIGHT
-            }
-            application={App}
+            anchor={TOP | LEFT | RIGHT}
+            application={app}
         >
-            <box vertical={true}>
-                <centerbox className="bar no-bg">
-                    <box
-                        className="bar-left"
-                        expand
-                        spacing={12}
-                        halign={Gtk.Align.START}
-                    >
-                        <Workspace mon={mon} />
-                        <ActiveWindow />
-                    </box>
-                    <box></box>
-                    <box
-                        className="bar-right"
-                        expand
-                        spacing={8}
-                        halign={Gtk.Align.END}
-                    >
-                        <TrayContainer />
-                        <BatteryInfo />
-                        <Clock />
-                    </box>
-                </centerbox>
-                <Indicator mon={mon} />
+            <box orientation={Gtk.Orientation.VERTICAL}>
+                <box>
+                    {getMonitorWorkspaces(mon.id).map((ws) => (
+                        <box
+                            heightRequest={height}
+                            hexpand
+                            class={mwss.as(
+                                (_) =>
+                                    `indicator ${
+                                        ws ===
+                                        mwss.get()[
+                                            getMonitorWorkspace(mon.id) - 1
+                                        ]
+                                            ? "active"
+                                            : ws.clients.length > 0
+                                              ? "populated"
+                                              : "empty"
+                                    }`,
+                            )}
+                        ></box>
+                    ))}
+                </box>
             </box>
         </window>
     );

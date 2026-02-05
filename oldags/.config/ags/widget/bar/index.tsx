@@ -1,4 +1,4 @@
-import { App, Astal, Gtk, Gdk, Widget } from "astal/gtk3";
+import { App, Astal, Gtk, Gdk } from "astal/gtk3";
 import { GdkMonitorToHypr } from "../../utils.ts";
 import { TrayContainer } from "./items/Tray.tsx";
 import { BatteryInfo } from "./items/Battery.tsx";
