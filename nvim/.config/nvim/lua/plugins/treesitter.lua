@@ -2,7 +2,6 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
-        event = "BufReadPost",
         ---@type TSConfig
         opts = {
             sync_install = false,
@@ -17,7 +16,6 @@ return {
                 "html",
                 "javascript",
                 "json",
-                "lua",
                 "markdown",
                 "markdown_inline",
                 "python",
@@ -31,12 +29,21 @@ return {
                 "yaml",
             },
         },
-        ---@param opts TSConfig
-        config = function(plugin, opts)
-            if plugin.ensure_installed then
-                require("lazyvim.util").deprecate("treesitter.ensure_installed", "treesitter.opts.ensure_installed")
-            end
-            require("nvim-treesitter.configs").setup(opts)
-        end,
+--        ---@param opts TSConfig
+--        config = function(plugin, opts)
+--            local ts_filetypes = {}
+--
+--            vim.api.nvim_create_autocmd('FileType', {
+--                pattern = ts_filetypes,
+--                callback = function()
+--                    -- enable syntax highlight
+--                    vim.treesitter.start()
+--
+--                    -- enable folds
+--                    vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+--                    vim.wo[0][0].foldmethod = 'expr'
+--                end
+--            })
+--        end,
     },
 }

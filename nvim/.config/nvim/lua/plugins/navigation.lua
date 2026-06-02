@@ -89,16 +89,15 @@ return {
 			{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
 		},
 	},
-	{
-		"knubie/vim-kitty-navigator",
-		event = "VeryLazy",
-	},
+--	{
+--		"knubie/vim-kitty-navigator",
+--		event = "VeryLazy",
+--	},
 	{
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
-
 	{
 		"mbbill/undotree",
 		event = "VeryLazy",
