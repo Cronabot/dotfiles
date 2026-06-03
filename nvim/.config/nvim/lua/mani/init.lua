@@ -1,6 +1,7 @@
 require("mani.set")
 require("mani.remap")
 require("mani.autocmds")
+require("mani.lsp")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -13,8 +14,6 @@ if not vim.loop.fs_stat(lazypath) then
     })
 end
 vim.opt.runtimepath:prepend(lazypath)
-
-vim.lsp.enable({'clangd'})
 
 require("lazy").setup("plugins", {
     defaults = { lazy = true },
