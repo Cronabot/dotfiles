@@ -1,1 +1,1 @@
-require("mani")
+require("main")
