@@ -39,3 +39,20 @@ require("lazy").setup("plugins", {
     },
     -- debug = true,
 })
+
+vim.lsp.enable('clangd')
+
+vim.lsp.config('pylsp', {
+    settings = {
+        pylsp = {
+            plugins = {
+                pycodestyle = {
+                    maxLineLength = 200,
+                },
+            },
+        },
+    },
+})
+
+
+vim.lsp.enable('pylsp')
