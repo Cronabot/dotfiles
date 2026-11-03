@@ -17,7 +17,7 @@ vim.opt.runtimepath:prepend(lazypath)
 require("lazy").setup("plugins", {
     defaults = { lazy = true },
     install = { colorscheme = { "carbonfox" } },
-    checker = { 
+    checker = {
         enabled = true,
         notify = false
     },
@@ -40,7 +40,14 @@ require("lazy").setup("plugins", {
     -- debug = true,
 })
 
+vim.lsp.buf.hover({
+    border = "rounded",
+    title = " Documentation ",
+    title_pos = "center",
+})
+
 vim.lsp.enable('clangd')
+vim.lsp.enable('lua_ls')
 
 vim.lsp.config('pylsp', {
     settings = {

@@ -30,3 +30,13 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = ""
 
 vim.g.mapleader = " "
+
+vim.opt.completeopt = { "menuone", "noselect", "popup" }
+vim.opt.complete = { "o" }
+vim.opt.autocomplete = true
+
+vim.lsp.buf.hover({
+    border = "rounded",
+    title = " Documentation ",
+    title_pos = "center",
+})
